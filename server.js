@@ -20,6 +20,11 @@ app.get("/dreams", function (request, response) {
   response.send(dreams);
 });
 
+app.get("/api/whoami", function (request, response) {
+  var ip = request.connection
+  response.send(request.headers);
+});
+
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
 app.post("/dreams", function (request, response) {
   dreams.push(request.query.dream);
