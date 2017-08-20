@@ -21,8 +21,14 @@ app.get("/dreams", function (request, response) {
 });
 
 app.get("/api/whoami", function (request, response) {
-  var ip = request.connection
-  response.send(request.headers);
+  
+  var ip = request.socket.remoteAddress;
+  var result = {
+    "ipaddress": ip,
+    "language": "en-US",
+    "software": request.headers["user-agent"]
+  };
+  response.send(result);
 });
 
 // could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
